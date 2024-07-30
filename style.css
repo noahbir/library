@@ -4,9 +4,15 @@ body {
 
 
 .book-item {
+    display: flex;
     writing-mode: vertical-rl;
     text-orientation: upright;
     border: 1px solid black;
+}
+
+.book-item button {
+    flex: 1;
+    font-size: inherit;
 }
 
 .main-container {
