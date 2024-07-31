@@ -55,5 +55,18 @@ document.addEventListener("DOMContentLoaded", () => {
         bookItem.appendChild(btnRemove);
         bookContainer.appendChild(bookItem);
     });
+
+    const btnClear = document.getElementById("clear");
+    btnClear.addEventListener("click", () => {
+        const inputTitle = document.getElementById("title");
+        const inputAuthor = document.getElementById("author");
+        const inputPages = document.getElementById("pages");
+        inputTitle.value = "";
+        inputAuthor.value = "";
+        inputPages.value = "";
+        const inputReadStart = document.getElementById("read");
+        inputReadStart.checked = false;
+
+    });
 });
 
