@@ -15,6 +15,12 @@ body {
     font-size: inherit;
 }
 
+.book-item .close-btn {
+    width: 50px;
+    height: 50px;
+    flex: 0 0 auto;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;

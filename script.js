@@ -26,4 +26,20 @@ btnSubmit.addEventListener("click", () => {
     myLibrary.push(newBook);
     console.log(newBook);
     console.log(myLibrary);
+    
+    
+    
+    // add newBook to the top-container to display
+    const bookContainer = document.querySelector(".book-container");
+    const bookItem = document.createElement("div");
+    bookItem.classList.add("book-item");
+    const btnBook = document.createElement("button");
+    const btnRemove = document.createElement("button");
+    btnRemove.classList.add("close-btn");
+    btnBook.textContent = myLibrary[0].title;
+    btnRemove.textContent = "X";
+    bookItem.appendChild(btnBook);
+    bookItem.appendChild(btnRemove);
+    bookContainer.appendChild(bookItem);
+    
 });
