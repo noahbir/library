@@ -12,13 +12,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event delegation
     bookContainer.addEventListener("click", (event) => {
+        const target = event.target;
+        
         if (event.target.closest(".title-btn")) {
             console.log("title is clicked");
-            //alert with the information of book
+            const index = event.target.getAttribute("data-index");
+            const book = myLibrary[index];
+            alert(`Title: ${book.title}\nAuthor: ${book.author}\nPages: ${book.pages}\nRead: ${book.read}`);
         }
         if (event.target.closest(".close-btn")) {
             console.log("remove button is clicked");
-            //removing the clicked button
+            const index = event.target.getAttribute("data-index");
+            myLibrary.splice(index, 1);
+
+            // remove div from bookContainer
+            const bookItem = target.closest(".book-item");
+            bookContainer.removeChild(bookItem);
+
+            // Update data-index attributes for remaining books
+            Array.from(bookContainer.children).forEach((item, idx) => {
+                const titleBtn = item.querySelector(".title-btn");
+                if (titleBtn) {
+                    titleBtn.setAttribute("data-index", idx);
+                }
+                const closeBtn = item.querySelector(".close-btn");
+                if (closeBtn) {
+                    closeBtn.setAttribute("data-index", idx);
+                }
+            });
         }
     });
 
@@ -47,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bookItem.classList.add("book-item");
         const btnBook = document.createElement("button");
         btnBook.classList.add("title-btn");
+        btnBook.setAttribute("data-index", myLibrary.length - 1);
         const btnRemove = document.createElement("button");
         btnRemove.classList.add("close-btn");
         btnBook.textContent = newBook.title; // Use newBook instead of myLibrary[0]
